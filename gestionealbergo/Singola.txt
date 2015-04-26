@@ -1,0 +1,13 @@
+package gestionealbergo;
+
+import java.util.Vector;
+
+public class Singola extends Camera {
+
+	public Singola(String numero, int postiLetto,
+			Vector<Prenotazione> prenotazioni) {
+		super(numero, postiLetto, prenotazioni);
+		
+	}
+
+}

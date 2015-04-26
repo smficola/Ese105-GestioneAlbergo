@@ -1,0 +1,48 @@
+package gestionealbergo;
+
+import java.util.Vector;
+
+public class Albergo {
+	private String nome;
+	private Vector<Camera>camere;
+	/**
+	 * @param nome
+	 * @param camere
+	 */
+	public Albergo(String nome, Vector<Camera> camere) {
+		if(nome!=null)
+		{
+	
+		    this.nome = nome;
+		}
+		else
+		{
+			throw new IllegalArgumentException( "il numero non può essere 0");
+		}
+		 camere= new Vector<Camera>();
+	}
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+	/**
+	 * @return the camere
+	 */
+	public Vector<Camera> getCamere() {
+		return camere;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Albergo [nome=" + nome + ", numeroCamere=" + camere.size() + "]";
+	}
+	
+	
+
+	
+
+}

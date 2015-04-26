@@ -1,0 +1,109 @@
+package gestionealbergo;
+
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.*;
+public class Prenotazione {
+	private LocalDateTime dal;
+	private LocalDateTime al;
+	private Camera camera;
+	private Cliente cliente;
+	/**
+	 * @param dal
+	 * @param al
+	 * @param camera
+	 * @param cliente
+	 */
+	public Prenotazione(LocalDateTime dal, LocalDateTime al, Camera camera,
+			Cliente cliente) {
+		if(dal!=null)
+		{
+			if(al!=null)
+			{
+				
+			
+			   if(dal.isBefore(al))
+			   {
+				  this.dal = dal;
+				  this.al = al;
+			   }
+			   else
+			   {
+				throw new IllegalArgumentException( "al deve seguire dal");
+			   }
+			}
+			
+		}
+		else
+		{
+			throw new IllegalArgumentException( "al e dal non possono essere 0");
+		}
+		
+		if(cliente!=null)
+		{
+			this.cliente = cliente;
+		}
+		else
+		{
+			throw new IllegalArgumentException( "cliente non può essere 0");
+		}
+		
+		this.camera = camera;
+		
+	}
+	/**
+	 * @return the dal
+	 */
+	public LocalDateTime getDal() {
+		return dal;
+	}
+	/**
+	 * @return the al
+	 */
+	public LocalDateTime getAl() {
+		return al;
+	}
+	/**
+	 * @return the camera
+	 */
+	public Camera getCamera() {
+		return camera;
+	}
+	/**
+	 * @param camera the camera to set
+	 */
+	public void setCamera(Camera camera) {
+		if(camera!=null)
+		{
+			this.camera = camera;
+		}
+		else
+		{
+			throw new IllegalArgumentException( "camera deve essere prenotata");
+		}
+		
+	}
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public int getNumeroNotti()
+	{
+		return Period.between(dal.toLocalDate(), al.toLocalDate()).getDays();
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Prenotazione [dal=" + dal + ", al=" + al + ", camera=" + camera
+				+ ", cliente=" + cliente + "]";
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,13 @@
+package gestionealbergo;
+
+import java.util.Vector;
+
+public class Tripla extends Camera {
+
+	public Tripla(String numero, int postiLetto,
+			Vector<Prenotazione> prenotazioni) {
+		super(numero, postiLetto, prenotazioni);
+		
+	}
+
+}

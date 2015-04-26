@@ -1,0 +1,124 @@
+package gestionealbergo;
+
+import java.time.LocalDateTime;
+import java.util.Vector;
+
+
+
+public abstract class Camera {
+	private String numero;
+	private int postiLetto;
+	private Vector<Prenotazione>prenotazioni;
+	/**
+	 * @param numero
+	 * @param postiLetto
+	 * @param prenotazioni
+	 */
+	public Camera(String numero, int postiLetto,
+			Vector<Prenotazione> prenotazioni) {
+		if(numero!=null)
+		{
+		       this.numero = numero;
+		}
+		else
+		{
+			throw new IllegalArgumentException( "il numero non può essere 0");
+		}
+		if(postiLetto>0)
+		{
+			this.postiLetto = postiLetto;
+		}
+		else
+		{
+			throw new IllegalArgumentException( "il numero di postiLetto deve essere maggiore di 0");
+		}
+		
+		this.prenotazioni = new Vector <Prenotazione>();
+	
+	}
+	/**
+	 * @return the numero
+	 */
+	public String getNumero() {
+		return numero;
+	}
+	
+	/**
+	 * @return the postiLetto
+	 */
+	public int getPostiLetto() {
+		return postiLetto;
+	}
+	/**
+	 * @return the prenotazioni
+	 */
+	public Vector<Prenotazione> getPrenotazioni() {
+		return prenotazioni;
+	}
+	public boolean isDisponibile(LocalDateTime dal, LocalDateTime al)
+	{
+		boolean r=true;
+	    for(Prenotazione p:prenotazioni)
+	    {
+	    	if(dal.isAfter(p.getAl())) 
+	    	{
+	    		if(al.isBefore(p.getDal()))
+	    		{
+	    			r=false;
+	    		}
+	    		
+	    	}
+	    }
+	    return r;
+	      
+
+		
+	}
+	public void addPrenotazione(Prenotazione p) 
+	{
+		if(p!=null)
+		{
+			if(this.isDisponibile(p.getDal(), p.getAl()))
+			{
+				p.setCamera(this);
+				prenotazioni.add(p);
+			}
+			else
+			{
+				throw new IllegalArgumentException( "camera non è disponibile");
+			}
+		}
+		else
+		{
+			
+			throw new IllegalArgumentException( "prenotazione non può essere vuota");
+		}
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Camera [numero=" + numero + ", postiLetto=" + postiLetto
+				+ ", prenotazioni=" + prenotazioni + "]";
+	}
+	
+	
+	
+	
+}
+
+	
+
+	
+
+
+	
+		
+		
+		
+	
+	
+	
+
+
